@@ -60,3 +60,22 @@ display(spark.sql("SELECT region, SUM(revenue) AS revenue FROM sales GROUP BY re
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+from pyspark.sql import functions as F
+
+(spark.table("sales")
+    .groupBy("region")
+    .agg(F.sum("revenue").alias("total_revenue"),
+         F.sum("quantity").alias("total_quantity"))
+    .write.mode("overwrite").format("delta").saveAsTable("sales_by_region"))
+
+display(spark.table("sales_by_region"))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
