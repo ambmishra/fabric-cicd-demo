@@ -1,18 +1,12 @@
 table sales
-	lineageTag: 458c54f9-c4e5-41d2-891f-28f6e4023e5c
+	lineageTag: 5edac93d-db92-4003-9827-7eb5142cf520
 	sourceLineageTag: [dbo].[sales]
-
-	measure 'Total Revenue' = SUM(sales[revenue])
-		lineageTag: 3521809f-18be-404f-87f0-52f8c333bda1
-
-		changedProperty = Name
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column order_id
 		dataType: int64
 		formatString: 0
-		lineageTag: 3f912ce7-33e4-47d5-811a-200ecdd07ea5
+		sourceProviderType: bigint
+		lineageTag: 458a7f16-271c-42e3-8494-76c9460a5eef
 		sourceLineageTag: order_id
 		summarizeBy: sum
 		sourceColumn: order_id
@@ -22,7 +16,8 @@ table sales
 	column order_date
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 1366daf2-d167-40d0-99a7-e3c7d9827ed9
+		sourceProviderType: date
+		lineageTag: 8a1ee79f-8770-44ce-93d0-aca22fd8f1f2
 		sourceLineageTag: order_date
 		summarizeBy: none
 		sourceColumn: order_date
@@ -31,7 +26,8 @@ table sales
 
 	column region
 		dataType: string
-		lineageTag: cdfdd816-1606-41de-b56a-874f5ea1db70
+		sourceProviderType: varchar(8000)
+		lineageTag: ec73eaf8-5662-4c56-8ebb-78aa6a404b05
 		sourceLineageTag: region
 		summarizeBy: none
 		sourceColumn: region
@@ -40,7 +36,8 @@ table sales
 
 	column product
 		dataType: string
-		lineageTag: 011bb926-4399-40ea-baaf-aab2b80386a7
+		sourceProviderType: varchar(8000)
+		lineageTag: 735c99a8-f231-452b-b939-d8c489b31a88
 		sourceLineageTag: product
 		summarizeBy: none
 		sourceColumn: product
@@ -50,7 +47,8 @@ table sales
 	column quantity
 		dataType: int64
 		formatString: 0
-		lineageTag: a9072d77-ac3f-4b38-b7ec-837e7819e04d
+		sourceProviderType: bigint
+		lineageTag: 49b3a7ae-d398-4700-bb5b-45fa662f0eca
 		sourceLineageTag: quantity
 		summarizeBy: sum
 		sourceColumn: quantity
@@ -59,7 +57,8 @@ table sales
 
 	column unit_price
 		dataType: double
-		lineageTag: d9ff1795-ffdc-461b-8314-ad29a3660e4c
+		sourceProviderType: float
+		lineageTag: 902992cb-6569-43a0-a86b-7bb017fe04ad
 		sourceLineageTag: unit_price
 		summarizeBy: sum
 		sourceColumn: unit_price
@@ -70,7 +69,8 @@ table sales
 
 	column revenue
 		dataType: double
-		lineageTag: 1be77dfb-a0ff-4829-b5aa-61bb82a78e3e
+		sourceProviderType: float
+		lineageTag: e7d052c3-205d-44d0-b100-1894e9618654
 		sourceLineageTag: revenue
 		summarizeBy: sum
 		sourceColumn: revenue
@@ -83,5 +83,8 @@ table sales
 		mode: directLake
 		source
 			entityName: sales
-			expressionSource: 'DirectLake - LH_Sales'
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
 

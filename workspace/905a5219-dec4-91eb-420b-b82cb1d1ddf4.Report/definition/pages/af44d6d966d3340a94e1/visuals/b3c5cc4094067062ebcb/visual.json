@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "68985575dd8d08416385",
+  "name": "b3c5cc4094067062ebcb",
   "position": {
     "x": 10.41944601469757,
     "y": 0,
     "z": 0,
-    "height": 567.85980780101761,
-    "width": 875.23346523459588,
+    "height": 625.1667608818542,
+    "width": 675.52741661955906,
     "tabOrder": 0
   },
   "visual": {
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "sales"
+                      "Entity": "sales_by_region"
                     }
                   },
-                  "Property": "order_date"
+                  "Property": "region"
                 }
               },
-              "queryRef": "sales.order_date",
-              "nativeQueryRef": "order_date",
+              "queryRef": "sales_by_region.region",
+              "nativeQueryRef": "region",
               "active": true
             }
           ]
@@ -41,17 +41,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "sales"
+                          "Entity": "sales_by_region"
                         }
                       },
-                      "Property": "revenue"
+                      "Property": "total_revenue"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(sales.revenue)",
-              "nativeQueryRef": "Sum of revenue"
+              "queryRef": "Sum(sales_by_region.total_revenue)",
+              "nativeQueryRef": "Sum of total_revenue"
             }
           ]
         }
@@ -60,16 +60,21 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "sales"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "sales_by_region"
+                      }
+                    },
+                    "Property": "total_revenue"
                   }
                 },
-                "Property": "order_date"
+                "Function": 0
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": true
@@ -80,17 +85,17 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "8bec4f2e5d9679003333",
+        "name": "e626f752380b0a34be1d",
         "field": {
           "Aggregation": {
             "Expression": {
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "sales"
+                    "Entity": "sales_by_region"
                   }
                 },
-                "Property": "revenue"
+                "Property": "total_revenue"
               }
             },
             "Function": 0
@@ -99,15 +104,15 @@
         "type": "Advanced"
       },
       {
-        "name": "c75a8b3d6660d8dde5bd",
+        "name": "ea9eebcd584a859ac846",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "sales"
+                "Entity": "sales_by_region"
               }
             },
-            "Property": "order_date"
+            "Property": "region"
           }
         },
         "type": "Categorical"

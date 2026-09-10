@@ -1,10 +1,11 @@
 table sales_by_region
-	lineageTag: 72e1df04-ab67-4455-9e5a-c671c0d3c464
+	lineageTag: 3ef79634-a745-4462-a7d3-911bbf723cbf
 	sourceLineageTag: [dbo].[sales_by_region]
 
 	column region
 		dataType: string
-		lineageTag: 6d1237db-4f37-4230-89a7-354bbc97f1e8
+		sourceProviderType: varchar(8000)
+		lineageTag: ebbc254a-2718-4c63-a3c7-f449c48201e8
 		sourceLineageTag: region
 		summarizeBy: none
 		sourceColumn: region
@@ -13,7 +14,8 @@ table sales_by_region
 
 	column total_revenue
 		dataType: double
-		lineageTag: dac7431a-adfe-4a33-b9d6-474f7dcbfb8b
+		sourceProviderType: float
+		lineageTag: e13d1a71-ea63-4662-9818-14f2d0ab85da
 		sourceLineageTag: total_revenue
 		summarizeBy: sum
 		sourceColumn: total_revenue
@@ -25,7 +27,8 @@ table sales_by_region
 	column total_quantity
 		dataType: int64
 		formatString: 0
-		lineageTag: 60f9c3dc-aa56-425b-9d21-53923da790ab
+		sourceProviderType: bigint
+		lineageTag: 9cb100f0-05fb-4845-a371-907232dcd44f
 		sourceLineageTag: total_quantity
 		summarizeBy: sum
 		sourceColumn: total_quantity
@@ -36,5 +39,8 @@ table sales_by_region
 		mode: directLake
 		source
 			entityName: sales_by_region
-			expressionSource: 'DirectLake - LH_Sales'
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
 
